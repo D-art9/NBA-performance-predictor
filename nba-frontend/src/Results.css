@@ -1,0 +1,366 @@
+/* Results Page Styles */
+:root {
+  --bg: linear-gradient(to bottom, #0a1929, #0f1e2e);
+  --card: rgba(15, 36, 54, 0.9);
+  --accent: #2563eb;
+  --muted: #9fb3d3;
+  --success: #34d399;
+  --danger: #f87171;
+  --warning: #fbbf24;
+}
+
+.results-page {
+  min-height: 100vh;
+  background: var(--bg);
+  color: #e6eef8;
+  font-family: Inter, system-ui, -apple-system, sans-serif;
+  padding: 40px 20px;
+}
+
+.results-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Header */
+.results-header {
+  text-align: center;
+  margin-bottom: 48px;
+  position: relative;
+}
+
+.results-header h1 {
+  font-size: 42px;
+  font-weight: 700;
+  margin: 0 0 12px 0;
+  background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.results-subtitle {
+  color: var(--muted);
+  font-size: 16px;
+  margin: 0 0 20px 0;
+}
+
+.btn-refresh {
+  background: rgba(59, 130, 246, 0.12);
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  color: #60a5fa;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  margin-top: 12px;
+}
+
+.btn-refresh:hover {
+  background: rgba(59, 130, 246, 0.2);
+  transform: translateY(-2px);
+}
+
+/* Section Headers */
+.results-section {
+  margin-bottom: 48px;
+}
+
+.results-date-header {
+  font-size: 24px;
+  font-weight: 700;
+  color: #e6eef8;
+  margin: 0 0 20px 0;
+  padding-bottom: 12px;
+  border-bottom: 2px solid rgba(59, 130, 246, 0.2);
+}
+
+/* Games Grid */
+.games-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 20px;
+}
+
+/* Game Card */
+.game-card {
+  background: var(--card);
+  border-radius: 12px;
+  padding: 16px;
+  border: 1px solid rgba(59, 130, 246, 0.15);
+  box-shadow: 0 8px 24px rgba(2, 6, 23, 0.5);
+  transition: all 0.2s ease;
+}
+
+.game-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(37, 99, 235, 0.15);
+  border-color: rgba(59, 130, 246, 0.3);
+}
+
+.game-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.game-status {
+  font-size: 12px;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 999px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.status-final {
+  background: rgba(52, 211, 153, 0.15);
+  color: var(--success);
+  border: 1px solid rgba(52, 211, 153, 0.3);
+}
+
+.status-live {
+  background: rgba(248, 113, 113, 0.15);
+  color: var(--danger);
+  border: 1px solid rgba(248, 113, 113, 0.3);
+  animation: pulse 2s infinite;
+}
+
+.status-scheduled {
+  background: rgba(251, 191, 36, 0.15);
+  color: var(--warning);
+  border: 1px solid rgba(251, 191, 36, 0.3);
+}
+
+.game-time {
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 500;
+}
+
+/* Team Rows */
+.game-matchup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.team-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+}
+
+.team-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+}
+
+.team-logo-placeholder {
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 700;
+  color: white;
+  flex-shrink: 0;
+}
+
+.team-name {
+  font-size: 16px;
+  font-weight: 600;
+  color: #e6eef8;
+}
+
+.team-score {
+  font-size: 24px;
+  font-weight: 700;
+  color: #60a5fa;
+  min-width: 40px;
+  text-align: right;
+}
+
+.matchup-divider {
+  text-align: center;
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 600;
+  padding: 4px 0;
+}
+
+/* Loading Skeletons */
+.skeleton-card {
+  background: var(--card);
+  border: 1px solid rgba(59, 130, 246, 0.1);
+  padding: 20px;
+  animation: pulse-skeleton 1.5s infinite;
+}
+
+.skeleton-line {
+  height: 20px;
+  background: linear-gradient(
+    90deg,
+    rgba(96, 165, 250, 0.1) 0%,
+    rgba(96, 165, 250, 0.2) 50%,
+    rgba(96, 165, 250, 0.1) 100%
+  );
+  background-size: 200% 100%;
+  animation: loading 1.4s infinite;
+  border-radius: 4px;
+  margin-bottom: 12px;
+}
+
+.skeleton-team {
+  width: 60%;
+}
+
+.skeleton-score {
+  width: 40%;
+}
+
+@keyframes loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+@keyframes pulse-skeleton {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+/* Empty State */
+.empty-state {
+  text-align: center;
+  padding: 80px 20px;
+  background: var(--card);
+  border-radius: 16px;
+  border: 1px solid rgba(59, 130, 246, 0.15);
+}
+
+.empty-icon {
+  font-size: 64px;
+  margin-bottom: 20px;
+  opacity: 0.6;
+}
+
+.empty-state h2 {
+  font-size: 24px;
+  margin: 0 0 12px 0;
+  color: #e6eef8;
+}
+
+.empty-state p {
+  color: var(--muted);
+  font-size: 16px;
+  margin: 0;
+}
+
+/* Error State */
+.error-state {
+  text-align: center;
+  padding: 80px 20px;
+  background: var(--card);
+  border-radius: 16px;
+  border: 1px solid rgba(248, 113, 113, 0.3);
+}
+
+.error-icon {
+  font-size: 64px;
+  margin-bottom: 20px;
+}
+
+.error-message {
+  color: var(--danger);
+  font-size: 18px;
+  margin: 0 0 24px 0;
+}
+
+.btn-retry {
+  background: rgba(248, 113, 113, 0.15);
+  border: 1px solid rgba(248, 113, 113, 0.3);
+  color: var(--danger);
+  padding: 12px 24px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.btn-retry:hover {
+  background: rgba(248, 113, 113, 0.25);
+  transform: translateY(-2px);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .results-page {
+    padding: 20px 12px;
+  }
+
+  .results-header h1 {
+    font-size: 32px;
+  }
+
+  .results-date-header {
+    font-size: 20px;
+  }
+
+  .games-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .game-card {
+    padding: 14px;
+  }
+
+  .team-name {
+    font-size: 14px;
+  }
+
+  .team-score {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .results-header h1 {
+    font-size: 28px;
+  }
+
+  .team-logo-placeholder {
+    width: 36px;
+    height: 36px;
+    font-size: 12px;
+  }
+}

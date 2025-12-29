@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 400 400">
+  <rect width="100%" height="100%" fill="#071226"/>
+  <g transform="translate(200,160)">
+    <circle cx="0" cy="-10" r="56" fill="#142a3a" stroke="#233848" stroke-width="2"/>
+    <rect x="-90" y="70" width="180" height="120" rx="16" fill="#142a3a" stroke="#233848" stroke-width="2"/>
+  </g>
+  <text x="50%" y="92%" font-family="Inter, system-ui, Arial" font-size="18" fill="#9fb3d3" text-anchor="middle">No Headshot</text>
+</svg>

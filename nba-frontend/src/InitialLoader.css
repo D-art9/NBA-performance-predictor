@@ -1,0 +1,204 @@
+.initial-loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(135deg, #0a1929 0%, #1a2332 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  opacity: 1;
+  transition: opacity 0.6s ease-out;
+}
+
+.initial-loader.fade-out {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.loader-content {
+  text-align: center;
+}
+
+.basketball-animation {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  margin: 0 auto 30px;
+}
+
+/* Player character */
+.player {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  width: 40px;
+  height: 60px;
+}
+
+.player-body {
+  width: 30px;
+  height: 40px;
+  background: #3b82f6;
+  border-radius: 15px 15px 5px 5px;
+  position: absolute;
+  bottom: 0;
+  left: 5px;
+}
+
+.player-arm {
+  width: 20px;
+  height: 8px;
+  background: #3b82f6;
+  border-radius: 4px;
+  position: absolute;
+  top: 10px;
+  right: -10px;
+  transform-origin: left center;
+  animation: armShoot 1.2s ease-in-out infinite;
+}
+
+/* Basketball */
+.basketball {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  background: linear-gradient(135deg, #ff6b35 0%, #ff8c42 100%);
+  border-radius: 50%;
+  bottom: 60px;
+  left: 40px;
+  animation: ballShoot 1.2s ease-in-out infinite;
+  box-shadow: 
+    inset -4px -4px 8px rgba(0, 0, 0, 0.3),
+    0 0 12px rgba(255, 107, 53, 0.4);
+}
+
+.basketball::before {
+  content: '';
+  position: absolute;
+  width: 2px;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.2);
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.basketball::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background: rgba(0, 0, 0, 0.2);
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* Hoop */
+.hoop {
+  position: absolute;
+  top: 30px;
+  right: 20px;
+}
+
+.hoop-rim {
+  width: 60px;
+  height: 8px;
+  background: linear-gradient(to bottom, #e63946 0%, #c92a2a 100%);
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(230, 57, 70, 0.4);
+}
+
+.hoop-net {
+  width: 50px;
+  height: 40px;
+  margin: 0 auto;
+  border-left: 2px solid rgba(255, 255, 255, 0.3);
+  border-right: 2px solid rgba(255, 255, 255, 0.3);
+  border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 0 0 50% 50%;
+  position: relative;
+}
+
+.hoop-net::before,
+.hoop-net::after {
+  content: '';
+  position: absolute;
+  width: 2px;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.2);
+  top: 0;
+}
+
+.hoop-net::before {
+  left: 30%;
+}
+
+.hoop-net::after {
+  right: 30%;
+}
+
+/* Animations */
+@keyframes armShoot {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(-45deg);
+  }
+  50% {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes ballShoot {
+  0% {
+    bottom: 60px;
+    left: 40px;
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    bottom: 140px;
+    left: 120px;
+    transform: scale(0.8);
+    opacity: 0.9;
+  }
+  75% {
+    bottom: 80px;
+    left: 150px;
+    transform: scale(0.6);
+    opacity: 0.7;
+  }
+  100% {
+    bottom: 60px;
+    left: 40px;
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Text elements */
+.loader-text {
+  color: #e6eef8;
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+.loader-subtext {
+  color: #9fb3d3;
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
