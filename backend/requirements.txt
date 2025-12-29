@@ -3,3 +3,4 @@ uvicorn[standard]
 nba_api
 pandas
 numpy
+tensorflow-cpu
