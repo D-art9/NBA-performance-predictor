@@ -12,6 +12,7 @@ import reportWebVitals from './reportWebVitals';
 
 // Log API base URL at startup for debugging
 console.log("API BASE URL =", import.meta.env.VITE_API_BASE_URL);
+console.log("FORCE VERCEL REBUILD", Date.now());
 
 const AppWrapper = () => {
   const [isLoading, setIsLoading] = useState(true);
