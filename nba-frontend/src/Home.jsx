@@ -17,7 +17,7 @@ export default function Home() {
 
   // fetch a small list of players and seed spotlight
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/players")
+    fetch(`${import.meta.env.VITE_API_BASE_URL}/players`)
       .then((r) => r.json())
       .then((data) => {
         const list = (Array.isArray(data) ? data : data?.players || [])
@@ -44,7 +44,7 @@ export default function Home() {
     if (!spotlightId) return;
     setSpotLoading(true);
     setSpotError(null);
-    fetch(`http://127.0.0.1:8000/predict/player/${spotlightId}`, { method: "POST" })
+    fetch(`${import.meta.env.VITE_API_BASE_URL}/predict/player/${spotlightId}`, { method: "POST" })
       .then((r) => {
         if (!r.ok) throw new Error("Prediction failed");
         return r.json();
@@ -58,7 +58,7 @@ export default function Home() {
   const loadStandings = () => {
     setStandingsLoading(true);
     setStandingsError(null);
-    fetch("http://127.0.0.1:8000/standings")
+    fetch(`${import.meta.env.VITE_API_BASE_URL}/standings`)
       .then((r) => {
         if (!r.ok) throw new Error("Failed to load standings");
         return r.json();

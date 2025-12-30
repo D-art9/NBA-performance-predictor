@@ -141,7 +141,7 @@ function App() {
   const [imgError, setImgError] = useState(false);
 
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/players")
+    fetch(`${import.meta.env.VITE_API_BASE_URL}/players`)
       .then((res) => res.json())
       .then((data) => {
         let raw = [];
@@ -185,7 +185,7 @@ function App() {
         setGamesError(null);
         try {
           const res = await fetch(
-            `http://127.0.0.1:8000/player/${encodeURIComponent(selectedPlayerId)}/recent-games`
+            `${import.meta.env.VITE_API_BASE_URL}/player/${encodeURIComponent(selectedPlayerId)}/recent-games`
           );
           if (!res.ok) throw new Error(`Request failed: ${res.status}`);
           const data = await res.json();
@@ -241,7 +241,7 @@ function App() {
       setPredictError(null);
       try {
         const res = await fetch(
-          `http://127.0.0.1:8000/predict/player/${encodeURIComponent(playerId)}`,
+          `${import.meta.env.VITE_API_BASE_URL}/predict/player/${encodeURIComponent(playerId)}`,
           { method: "POST" }
         );
         if (!res.ok) throw new Error(`Request failed: ${res.status}`);
