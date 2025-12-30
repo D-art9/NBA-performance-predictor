@@ -17,6 +17,7 @@ export default function Home() {
 
   // fetch a small list of players and seed spotlight
   useEffect(() => {
+    console.log("FETCH PLAYERS CALLED");
     fetch(`${import.meta.env.VITE_API_BASE_URL}/players`)
       .then((r) => r.json())
       .then((data) => {
@@ -72,6 +73,7 @@ export default function Home() {
   };
 
   useEffect(() => {
+    console.log("FETCH STANDINGS CALLED");
     loadStandings();
   }, []);
 
