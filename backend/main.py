@@ -19,7 +19,9 @@ app = FastAPI(title="NBA Points Predictor")
 app.include_router(nba_api_live.router)
 app.include_router(games.router)
 
-# Enable CORS for local frontend development
+# Enable CORS for frontend development and production
+# FRONTEND_URL can be set in environment variables for production
+frontend_url = os.getenv("FRONTEND_URL", "")
 origins = [
     "http://localhost:3000",
     "http://localhost:3001",
@@ -29,6 +31,13 @@ origins = [
     "http://127.0.0.1:3003",
     "http://192.168.1.52:3003",
 ]
+
+# Add production frontend URL if configured
+if frontend_url:
+    origins.append(frontend_url)
+    # Also add HTTPS version if HTTP was provided
+    if frontend_url.startswith("http://"):
+        origins.append(frontend_url.replace("http://", "https://"))
 
 app.add_middleware(
     CORSMiddleware,
