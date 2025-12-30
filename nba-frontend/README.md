@@ -1,70 +1,371 @@
-# Getting Started with Create React App
+# NBA Performance Predictor - Frontend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+React-based web application for NBA player performance prediction with interactive charts and analytics.
 
-## Available Scripts
+## 🚀 Quick Start (Local Development)
 
-In the project directory, you can run:
+### Prerequisites
+
+- Node.js 16+ and npm
+- Backend server running on port 8000 (see `../backend/README.md`)
+
+### Setup & Run
+
+#### Windows (PowerShell) or Mac/Linux
+
+```bash
+# 1. Navigate to frontend directory
+cd nba-frontend
+
+# 2. Install dependencies (first time only)
+npm install
+
+# 3. Copy environment file (already done for you!)
+# cp .env.example .env
+
+# 4. Verify .env file contains:
+# REACT_APP_API_BASE_URL=http://localhost:8000
+
+# 5. Start the development server
+npm start
+```
+
+The app will automatically open at http://localhost:3000
+
+### Verify It's Working
+
+1. Browser should open automatically to http://localhost:3000
+2. Open console (F12) - should see: `API BASE URL = http://localhost:8000`
+3. Player dropdown should populate with names
+4. Select a player and click "Predict" - should show prediction
+
+---
+
+## 📁 Project Structure
+
+```
+nba-frontend/
+├── public/
+│   ├── index.html          # HTML template
+│   └── ...                 # Static assets
+├── src/
+│   ├── App.js              # Main dashboard component
+│   ├── Home.jsx            # Landing page
+│   ├── About.jsx           # About page
+│   ├── Results.jsx         # Results page
+│   ├── DataFlow.jsx        # Data flow visualization
+│   ├── index.js            # App entry point
+│   ├── index.css           # Global styles
+│   └── data/
+│       └── team_map.js     # Team metadata
+├── package.json            # Dependencies & scripts
+├── .env.example           # Environment template
+└── .env                   # Your local config (git ignored)
+```
+
+---
+
+## 🔧 Environment Variables
+
+The `.env` file should contain:
+
+```bash
+# For local development (backend running on port 8000)
+REACT_APP_API_BASE_URL=http://localhost:8000
+
+# For production (deployed backend)
+# REACT_APP_API_BASE_URL=https://nba-performance-predictor.onrender.com
+```
+
+**Important**:
+- Variable MUST start with `REACT_APP_` (Create React App requirement)
+- Changes to `.env` require restarting `npm start`
+- Never commit `.env` file (already in `.gitignore`)
+
+---
+
+## 🎯 Available Scripts
 
 ### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Runs the app in development mode.
+- Opens http://localhost:3000
+- Hot-reloads on file changes
+- Shows lint errors in console
 
 ### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Builds the app for production to the `build/` folder.
+- Optimizes for best performance
+- Minifies code
+- Creates production-ready bundle
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### `npm test`
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Launches the test runner in interactive watch mode.
 
 ### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+⚠️ **One-way operation!** Ejects from Create React App.
+- Exposes all configuration files
+- You'll be responsible for maintaining config
+- Generally not recommended unless you need full control
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+---
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## 🐛 Troubleshooting
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### Issue: `API BASE URL = undefined` in console
 
-## Learn More
+**Solution**: Environment variable not loaded
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```bash
+# 1. Check .env file exists
+ls .env  # or dir .env on Windows
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+# 2. Verify it contains
+cat .env  # or type .env on Windows
+# Should show: REACT_APP_API_BASE_URL=http://localhost:8000
 
-### Code Splitting
+# 3. Restart the dev server
+# Stop with Ctrl+C, then:
+npm start
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### Issue: Player dropdown is empty
 
-### Analyzing the Bundle Size
+**Solution**: Backend not running or wrong URL
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+```bash
+# 1. Check backend is running
+# Open http://localhost:8000 in browser
+# Should see: {"status":"NBA prediction backend running"}
 
-### Making a Progressive Web App
+# 2. Check .env has correct URL
+cat .env
+# Should be: REACT_APP_API_BASE_URL=http://localhost:8000
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+# 3. Check browser console for errors (F12)
+```
 
-### Advanced Configuration
+### Issue: CORS errors in console
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+**Solution**: Backend CORS not configured for localhost
 
-### Deployment
+```bash
+# Backend main.py already includes localhost origins, so this shouldn't happen
+# If it does, check backend is actually running on port 8000
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+### Issue: `npm install` fails
 
-### `npm run build` fails to minify
+**Solution**: Clear cache and retry
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```bash
+# Clear npm cache
+npm cache clean --force
+
+# Delete node_modules and package-lock.json
+rm -rf node_modules package-lock.json  # or manual delete on Windows
+
+# Reinstall
+npm install
+```
+
+### Issue: Port 3000 already in use
+
+**Solution**: Use a different port
+
+```bash
+# Windows PowerShell
+$env:PORT=3001; npm start
+
+# Mac/Linux
+PORT=3001 npm start
+```
+
+---
+
+## 🌐 Features
+
+1. **Player Selection & Prediction**
+   - Dropdown with 200+ NBA players
+   - AI-powered scoring predictions
+   - Confidence bands and accuracy metrics
+
+2. **Interactive Charts**
+   - Points trend over last 5 games
+   - Minutes played breakdown
+   - Shooting consistency (rolling average)
+
+3. **Head-to-Head Comparison**
+   - Compare two players side-by-side
+   - See predicted performance difference
+
+4. **Performance Insights**
+   - Recent form analysis
+   - Team context
+   - Trend indicators
+
+5. **Responsive Design**
+   - Works on desktop and mobile
+   - Modern UI with animations
+   - Dark theme optimized for readability
+
+---
+
+## 🚀 Production Deployment (Vercel)
+
+### Deploy with Vercel CLI
+
+```bash
+# Install Vercel CLI
+npm install -g vercel
+
+# Deploy
+cd nba-frontend
+vercel
+
+# Follow prompts, then set environment variable in Vercel dashboard
+```
+
+### Deploy via Vercel Dashboard
+
+1. Connect GitHub repo to Vercel
+2. Select `nba-frontend` as root directory
+3. Set environment variable:
+   ```
+   REACT_APP_API_BASE_URL=https://nba-performance-predictor.onrender.com
+   ```
+4. Deploy!
+
+### Build Settings (Vercel)
+
+- **Framework Preset**: Create React App
+- **Build Command**: `npm run build`
+- **Output Directory**: `build`
+- **Install Command**: `npm install`
+
+---
+
+## 📦 Dependencies
+
+See `package.json`:
+- `react` & `react-dom` - UI framework
+- `react-router-dom` - Navigation
+- `recharts` - Interactive charts
+- `react-scripts` - Build tooling
+
+---
+
+## 🎨 Customization
+
+### Changing Colors
+
+Edit color values in `src/App.js`:
+```javascript
+const styles = {
+  page: { background: "..." },
+  // etc.
+}
+```
+
+### Adding New Pages
+
+1. Create new component in `src/YourPage.jsx`
+2. Add route in `src/index.js`:
+```javascript
+<Route path="/your-page" element={<YourPage />} />
+```
+
+### Modifying API Calls
+
+All API calls are in `src/App.js`. Look for `fetch()` calls:
+- Line 144: Fetch players
+- Line 188: Fetch recent games
+- Line 244: Fetch predictions
+
+---
+
+## 🧪 Testing
+
+```bash
+# Run all tests
+npm test
+
+# Run tests in watch mode
+npm test -- --watch
+
+# Run tests with coverage
+npm test -- --coverage
+```
+
+---
+
+## 🔗 API Integration
+
+The frontend expects these backend endpoints:
+
+- `GET /players` - List of players
+- `GET /player/:id/recent-games` - Last 5 games
+- `POST /predict/player/:id` - Prediction data
+- `GET /standings` - League standings
+
+All requests include proper error handling and loading states.
+
+---
+
+## 📚 Additional Documentation
+
+- **Backend Setup**: `../backend/README.md`
+- **Deployment Guide**: `../DEPLOYMENT_GUIDE.md`
+- **Quick Fix**: `../QUICK_FIX_GUIDE.md`
+- **Full Checklist**: `../DEPLOYMENT_CHECKLIST.md`
+
+---
+
+## 🏃‍♂️ Quick Command Reference
+
+```bash
+# First time setup
+cd nba-frontend
+npm install
+cp .env.example .env
+# (Edit .env if needed)
+npm start
+
+# Daily development
+npm start              # Start dev server
+# (Make changes, see them live)
+Ctrl+C                # Stop server
+
+# Before deployment
+npm run build         # Test production build
+npm test              # Run tests
+```
+
+---
+
+## 🤝 Contributing
+
+When making changes:
+
+1. Keep `.env` file local (never commit)
+2. Update `.env.example` if adding new variables
+3. Test locally before deploying
+4. Use meaningful commit messages
+5. Keep components modular and reusable
+
+---
+
+## 💡 Tips
+
+- **Fast Refresh**: Changes auto-reload, no need to manually refresh browser
+- **Console Warnings**: Fix them to avoid issues in production
+- **Performance**: Use React DevTools to identify slow components
+- **Debugging**: Browser DevTools (F12) are your friend
+- **State Management**: All state is in App.js, consider React Context for larger apps
+
+---
+
+**Need help?** Check the troubleshooting section or the main project documentation!
