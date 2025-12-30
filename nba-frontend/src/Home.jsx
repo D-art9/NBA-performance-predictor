@@ -21,6 +21,7 @@ export default function Home() {
     fetch(`${import.meta.env.VITE_API_BASE_URL}/players`)
       .then((r) => r.json())
       .then((data) => {
+        console.log("PLAYERS DATA:", data);
         const list = (Array.isArray(data) ? data : data?.players || [])
           .map((p) => ({
             player_id: p?.player_id ?? p?.id ?? p?.playerId,
@@ -65,6 +66,7 @@ export default function Home() {
         return r.json();
       })
       .then((data) => {
+        console.log("STANDINGS DATA:", data);
         setStandings({ east: data.east || [], west: data.west || [] });
         setLastUpdated(data.last_updated);
       })
