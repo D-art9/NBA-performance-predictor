@@ -141,7 +141,7 @@ function App() {
   const [imgError, setImgError] = useState(false);
 
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_BASE_URL}/players`)
+    fetch(`${process.env.REACT_APP_API_BASE_URL}/players`)
       .then((res) => res.json())
       .then((data) => {
         let raw = [];
@@ -185,7 +185,7 @@ function App() {
         setGamesError(null);
         try {
           const res = await fetch(
-            `${import.meta.env.VITE_API_BASE_URL}/player/${encodeURIComponent(selectedPlayerId)}/recent-games`
+            `${process.env.REACT_APP_API_BASE_URL}/player/${encodeURIComponent(selectedPlayerId)}/recent-games`
           );
           if (!res.ok) throw new Error(`Request failed: ${res.status}`);
           const data = await res.json();
@@ -241,7 +241,7 @@ function App() {
       setPredictError(null);
       try {
         const res = await fetch(
-          `${import.meta.env.VITE_API_BASE_URL}/predict/player/${encodeURIComponent(playerId)}`,
+          `${process.env.REACT_APP_API_BASE_URL}/predict/player/${encodeURIComponent(playerId)}`,
           { method: "POST" }
         );
         if (!res.ok) throw new Error(`Request failed: ${res.status}`);

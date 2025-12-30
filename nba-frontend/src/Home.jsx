@@ -18,7 +18,7 @@ export default function Home() {
   // fetch a small list of players and seed spotlight
   useEffect(() => {
     console.log("FETCH PLAYERS CALLED");
-    fetch(`${import.meta.env.VITE_API_BASE_URL}/players`)
+    fetch(`${process.env.REACT_APP_API_BASE_URL}/players`)
       .then((r) => r.json())
       .then((data) => {
         console.log("PLAYERS DATA:", data);
@@ -46,7 +46,7 @@ export default function Home() {
     if (!spotlightId) return;
     setSpotLoading(true);
     setSpotError(null);
-    fetch(`${import.meta.env.VITE_API_BASE_URL}/predict/player/${spotlightId}`, { method: "POST" })
+    fetch(`${process.env.REACT_APP_API_BASE_URL}/predict/player/${spotlightId}`, { method: "POST" })
       .then((r) => {
         if (!r.ok) throw new Error("Prediction failed");
         return r.json();
@@ -60,7 +60,7 @@ export default function Home() {
   const loadStandings = () => {
     setStandingsLoading(true);
     setStandingsError(null);
-    fetch(`${import.meta.env.VITE_API_BASE_URL}/standings`)
+    fetch(`${process.env.REACT_APP_API_BASE_URL}/standings`)
       .then((r) => {
         if (!r.ok) throw new Error("Failed to load standings");
         return r.json();

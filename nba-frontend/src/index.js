@@ -11,8 +11,7 @@ import InitialLoader from './InitialLoader';
 import reportWebVitals from './reportWebVitals';
 
 // Log API base URL at startup for debugging
-console.log("API BASE URL =", import.meta.env.VITE_API_BASE_URL);
-console.log("FORCE VERCEL REBUILD", Date.now());
+console.log("API BASE URL =", process.env.REACT_APP_API_BASE_URL);
 
 const AppWrapper = () => {
   const [isLoading, setIsLoading] = useState(true);
